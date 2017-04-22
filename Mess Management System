@@ -1,0 +1,461 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define adminusername "admin"                      //
+#define adminpassword "123456789"                   // roll no. of nitish;
+#define username "admin"                      //
+#define password "123456789"
+
+
+////////////////////////////////////////////////////////////Registration
+void Registration() {
+    int roomno1, trm;
+    string namer, tn, passr, tp, exst;
+    enter_room:
+    cout << "Type exit for exit:-\n";
+    cin >> exst;
+    if (exst == "exit") exit(0);
+    cout << "Enter Room no:-\n";
+    cin >> roomno1;
+    if (roomno1 < 1 || roomno1 > 500) {
+        cout << "You Entered a Invalid roomno:-\n";
+        goto enter_room;
+    }
+    cout << "Enter Name:-\n";
+    cin >> namer;
+    cout << "Enter Password:-\n";
+    cin >> passr;
+    ifstream rread;
+    rread.open("user_details.txt");
+    ofstream wwrite;
+    wwrite.open("temp.txt");
+    while (rread >> trm >> tn >> tp) {
+        if (trm == roomno1) {
+            cout << "room already occupied:-\n";
+            goto enter_room;
+        } else {
+            wwrite << trm << " " << tn << " " << tp << endl;
+        }
+    }
+    wwrite << roomno1 << " " << namer << " " << passr << endl;
+    cout << "Successful:-";
+    rread.close();
+    wwrite.close();
+    remove("user_details.txt");
+    rename("temp.txt", "user_details.txt");
+}
+
+////////////////////////////////////////////////////////////////////mess time table
+
+void mess_time_table(){
+    ifstream readonly;
+    readonly.open("mess_time_table.txt");
+    string s[5];
+    for(int i=1;i<=7;++i){
+        cout<<"Day "<<i<<" ";
+        readonly>>s[0]>>s[1]>>s[2]>>s[3];
+        cout<<s[0]<<"\t\t"<<s[1]<<"\t\t"<<s[2]<<"\t\t"<<s[3]<<endl;
+    }
+    readonly.close();
+}
+////////////////////////////////////////////////////////////////////Admin
+void Admin(string admin_name) {
+    //change password
+    int choice;
+    menu_for_admin:
+    //local_menu:
+    cout << "Enter choice:-\n";
+    cout << "1.Change Mess Time Table:-\n";
+    cout << "2.Update User details :-\n";
+    cout << "3.Change Admin password:-\n";
+    cout << "4.Show mess time table:-\n";
+    cout<<"5.Exit:-";
+    cin >> choice;
+    if (choice < 1 || choice > 5) {
+        cout << "Enter valid choice :- (1 to 5):-\n";
+        goto menu_for_admin;
+    }
+    if (choice == 1) {                                  //Change in mess menu for differnt / whole day
+        int ch;
+        change_in_menu:
+        cout << "Enter choice:-\n";
+        cout << "1.Change whole time table:-\n";
+        cout << "2.Change for particular day:-\n";
+        cout << "3.Change for particular time in a particular day:-\n";
+        cin >> ch;
+        if (ch < 1 || ch > 3) {
+            cout << "Enter vadlid choice:- (1 to 3 ):-\n";
+            goto change_in_menu;
+        }
+        if (ch == 1) {                                      //change in mess menu whole week
+            ofstream foutwm;
+            foutwm.open("temp.txt");
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (j == 0) {
+                        string breakfast;
+                        cout << "Enter Breakfast for day " << i + 1 << ":-" << endl;
+                        cout << "--->Please add menu with underscore <---\n";
+                        cin >> breakfast;
+                        foutwm << breakfast << " ";
+                    } else if (j == 1) {
+                        string lunch;
+                        cout << "Enter Lunch for day " << i + 1 << ":-" << endl;
+                        cout << "--->Please add menu with underscore <---\n";
+                        cin >> lunch;
+                        foutwm << lunch << " ";
+                    } else if (j == 2) {
+                        string snacks;
+                        cout << "Enter Snacks for day " << i + 1 << ":-" << endl;
+                        cout << "--->Please add menu with underscore <---\n";
+                        cin >> snacks;
+                        foutwm << snacks << " ";
+                    } else {
+                        string dinner;
+                        cout << "Enter Dinner for day " << i + 1 << ":-" << endl;
+                        cout << "--->Please add menu with underscore <---\n";
+                        cin >> dinner;
+                        foutwm << dinner << "\n";
+                    }
+                }
+            }
+            foutwm.close();                          //opening of mess file
+            remove("mess_time_table.txt");
+            rename("temp.txt", "mess_time_table.txt");
+
+        } else if (ch == 2) {                                     //change in mess menu for a particulr day
+            int i, k = 1;
+            enter_valid_day:
+            cout << "Enter day:- Monday is day 1 & so on.\n";
+            cin >> i;
+            if (i < 1 || i > 7) {
+                cout << "Enter a valid day :- (1 to 7):-\n";
+                goto enter_valid_day;
+            }
+            ifstream findm;                                            //opening of mess file for reading
+            findm.open("mess_time_table.txt");
+            ofstream foutdm;
+            foutdm.open("temp.txt");                                    //opening of temp file for writing
+            while (k != i) {
+                string s1, s2, s3, s4;
+                findm >> s1 >> s2 >> s3 >> s4;
+                foutdm << s1 << " " << s2 << " " << s3 << " " << s4 << endl;
+                ++k;
+            }
+            for (int j = 0; j < 4; ++j) {
+                if (j == 0) {
+                    string breakfast;
+                    cout << "Enter Breakfast for day " << i << ":-" << endl;
+                    cout << "--->Please add menu with underscore <---\n";
+                    cin >> breakfast;
+                    foutdm << breakfast << " ";
+                } else if (j == 1) {
+                    string lunch;
+                    cout << "Enter Lunch for day " << i << ":-" << endl;
+                    cout << "--->Please add menu with underscore <---\n";
+                    cin >> lunch;
+                    foutdm << lunch << " ";
+                } else if (j == 2) {
+                    string snacks;
+                    cout << "Enter Snacks for day " << i << ":-" << endl;
+                    cout << "--->Please add menu with underscore <---\n";
+                    cin >> snacks;
+                    foutdm << snacks << " ";
+                } else {
+                    string dinner;
+                    cout << "Enter Dinner for day " << i << ":-" << endl;
+                    cout << "--->Please add menu with underscore <---\n";
+                    cin >> dinner;
+                    foutdm << dinner << "\n";
+                }
+            }
+            ++k;
+            while (k != 7 && k <= 7) {
+                string s1, s2, s3, s4;
+                findm >> s1 >> s2 >> s3 >> s4;
+                foutdm << s1 << " " << s2 << " " << s3 << " " << s4 << endl;
+                ++k;
+            }
+            foutdm.close();                                 //closing of temp file
+            findm.close();                                  //closing of mess file
+            remove("mess_time_table.txt");
+            rename("temp.txt", "mess_time_table.txt");
+        } else if (ch == 3) {
+            int i, j;
+            enter_day_again:
+            cout << "Enter day :- Monday refers to 1:-\n";
+            cin >> i;
+            if (i < 1 || i > 7) {
+                cout << "Enter valid day :- (1 to 7) :-\n";
+                goto enter_day_again;
+            }
+            enter_foodtime_again:
+            cout << "Enter what you want to change :-\n";
+            cout << "1.Breakfast:-\n";
+            cout << "2.Lunch:-\n";
+            cout << "3.Snacks:-\n";
+            cout << "4.Dinner:-\n";
+            cin >> j;
+            if (j < 1 || j > 4) {
+                cout << "Enter valid choice :- (1 to 4):-\n";
+                goto enter_foodtime_again;
+            }
+            int k = 1;
+            ifstream findm;                                            //opening of mess file for reading
+            findm.open("mess_time_table.txt");
+            ofstream foutdm;
+            foutdm.open("temp.txt");                                    //opening of temp file for writing
+            while (k != i) {
+                string s1, s2, s3, s4;
+                findm >> s1 >> s2 >> s3 >> s4;
+                foutdm << s1 << " " << s2 << " " << s3 << " " << s4 << endl;
+                ++k;
+            }
+            string s[5];                                  //changes for a particular day
+            findm >> s[1] >> s[2] >> s[3] >> s[4];
+            if (j == 1) {
+                cout << "Enter new breakfast for day " << i << endl;
+                cin >> s[j];
+            } else if (j == 2) {
+                cout << "Enter new lunch for day " << i << endl;
+                cin >> s[j];
+            } else if (j == 3) {
+                cout << "Enter new snacks for day " << i << endl;
+                cin >> s[j];
+            } else {
+                cout << "Enter new dinner for day " << i << endl;
+                cin >> s[j];
+            }
+            foutdm << s[1] << " " << s[2] << " " << s[3] << " " << s[4] << endl;
+            ++k;
+            while (k != 7 && k <= 7) {
+                string s1, s2, s3, s4;
+                findm >> s1 >> s2 >> s3 >> s4;
+                foutdm << s1 << " " << s2 << " " << s3 << " " << s4 << endl;
+                ++k;
+            }
+            foutdm.close();                                 //closing of temp file
+            findm.close();                                  //closing of mess file
+            remove("mess_time_table.txt");
+            rename("temp.txt", "mess_time_table.txt");
+            goto menu_for_admin;
+        }
+    } else if (choice == 2) {                                      //User detail update;
+        //
+        int ch;
+        add_delete:
+        cout << "Enter your choice:-\n";
+        cout << "1.Add a user:-\n";
+        cout << "2.Delete a user:-\n";
+        cin >> ch;
+        if (ch < 1 || ch > 2) {
+            cout << "Enter valid choice:- (1 or 2):-\n";
+            goto add_delete;
+        }
+        if (ch == 1) {
+            Registration();
+            goto menu_for_admin;
+
+        } else {
+            bool flag = false;
+            int roomno, rn;
+            string ds, ds2, s1, s2;
+            user_not_found:
+            cout << "Enter user name:-\n";
+            cin >> ds;
+            enter_room_no:
+            cout << "Enter user room number:-\n";
+            cin >> roomno;
+            if (roomno < 1 || roomno > 500) {
+                cout << "You enter invalid number:-\n";
+                goto enter_room_no;
+            }
+            ifstream udread;
+            udread.open("user_deatils.txt");
+            ofstream udwrite;
+            udwrite.open("temp.txt");
+            while (udread >> rn >> s1 >> s2) {
+                if (rn == roomno && ds == s1) {
+                    flag = true;
+                } else {
+                    udwrite << rn <<" "<< s1<<" " << s2<<endl;
+                }
+            }
+            if (flag == false) {
+                cout << "User not found :-\n Wanna Try to delete again :-\n";
+                goto user_not_found;
+            } else {
+                udread.close();
+                udwrite.close();
+                remove("user_detail.txt");
+                rename("temp.txt", "user_details.txt");
+                goto menu_for_admin;
+            }
+        }
+
+    } else if (choice == 3) {
+        string old_admin_pass, new_admin_pass1, new_admin_pass2;
+        string unf, pwf;
+        ifstream adread;
+        adread.open("admin_details.txt");
+        ofstream adwrite;
+        adwrite.open("temp.txt");
+        adread >> unf >> pwf;
+        cout << "Enter current  admin password:-\n";
+        correct_password:                                       // goto
+        cin >> old_admin_pass;
+        if (old_admin_pass == pwf) {                       // if old passowrd matches
+            new_pass_again:
+            cout << "Enter admin password :-\n";
+            cin >> new_admin_pass1;
+            cout << "Enter admin password again:-\n";
+            cin >> new_admin_pass2;
+            if (new_admin_pass1 == new_admin_pass2) {
+                adwrite << unf << " " << new_admin_pass1 << endl;
+                cout<<"Successful:-";
+                goto menu_for_admin;
+
+            } else {
+                cout << "Password didn't matched:-\n";
+                goto new_pass_again;
+            }
+        } else {
+            cout << "Enter correct password:-";
+            goto correct_password;
+        }
+        adread.close();
+        adwrite.close();
+        remove("admin_details.txt");
+        rename("temp.text", "admin_details.txt");
+
+    } else if(choice==4) {
+        mess_time_table();
+        goto menu_for_admin;
+    }
+    else exit(0);
+}
+
+
+///////////////////////////////////////////////////////////User
+void User(int usroomno, string userna, string passpass){
+    int userch;
+    localuser:
+    cout<<"Enter your choice:-\n";
+    cout<<"1.Change Passowrd:-\n";
+    cout<<"2.Show Mess Time_table:-\n";
+    cout<<"3.Exit:-\n";
+    cin>>userch;
+    if(userch<1 || userch>2 ) {
+        goto localuser;
+    }
+    if(userch==1) {
+        int urm;
+        string unm, upw,newpasw;
+        ifstream adread;
+        adread.open("user_details.txt");
+        ofstream adwrite;
+        adwrite.open("temp.txt");
+        cout<<"Enter new password:-\n";
+        cin>>newpasw;
+        while(adread>>urm>>unm>>upw){
+            if(usroomno==urm && unm==userna){
+                adwrite<<urm<<" "<<unm<<" "<<newpasw<<endl;
+            }
+            else{
+                adwrite<<urm<<" "<<unm<<" "<<upw<<endl;
+            }
+        }
+        cout<<"Successful:-\n";
+        adread.close();
+        adwrite.close();
+        remove("user_details.txt");
+        rename("temp.txt", "user_details.txt");
+    } else if (userch == 2) {
+        mess_time_table();
+        goto localuser;
+    } else {
+        exit(0);
+    }
+}
+
+int main() {
+    // LOGIN PAGE
+    /*ofstream ffout;
+    ffout.open("admin_details.txt");
+    ffout<<"admin "<<"123456789"<<endl;
+    ffout.close();
+    ofstream fout;
+    fout.open("user_details.txt");
+    fout<<"nitish "<<"123"<<" 123"<<endl;
+    fout.close();*/
+
+
+    int choice;
+    valid_choice:           // label if user enter invalid choice
+    cout << "Enter your role:-\n";
+    cout << "1. Admin -> Mess Secretary \n";
+    cout << "2. User  -> Student \n";
+    cout << "3. Register a user :-\n";
+    cin >> choice;
+    if (choice == 1) {                                             // if choice is 1
+        string un, pw;
+        int j = 3;
+        do {
+            --j;// only 3 attempts for login
+            string unf, pwf;
+            cout << "Enter Username:-\n";
+            cin >> un;                    // username
+            cout << "Enter Password:-\n";
+            cin >> pw;
+            ifstream finad;
+            finad.open("admin_details.txt");                //opening of file
+            finad >> unf >> pwf;
+            if ((un == unf) && (pw == pwf)) {
+                Admin(unf);
+                break;
+            } else {
+                cout << "Try Again \n";
+                cout << j << " Attempt left\n";
+
+            }
+            finad.close();                          //closing of fie
+        } while (j);
+    } else if (choice == 2) {                                     // if choice is 2
+        ifstream udread;
+        udread.open("user_details.txt");
+        bool flag = false;
+        int roomno, rn;
+        string ds, ds2, s1, s2, pass1;
+        cout << "Enter user name:-\n";
+        cin >> ds;
+        enter_room_no:
+        cout << "Enter user room number:-\n";
+        cin >> roomno;
+        if (roomno < 1 || roomno > 500) {
+            cout << "Enter valid room number (1 to 500) :-\n";
+            goto enter_room_no;
+        }
+        cout << "Enter password :-\n";
+        cin >> pass1;
+        //udread >> rn >> s1 >> s2;
+        //cout << rn << s1 << s2;
+        while (udread >> rn >> s1 >> s2) {
+            if (rn == roomno && ds == s1 && s2 == pass1) {
+                flag = true;
+                //cout << "dsd";
+                break;
+            }// else cout << "else";
+        }
+        if (flag == true) User(roomno, ds, pass1);
+        else cout << "your enteres wrong details:-";
+        //file close
+        udread.close();
+
+    } else if (choice == 3) {                                                      //if choice is 3
+        Registration();
+        goto  valid_choice;
+    } else {
+        cout << "Please enter a valid choice:-\n";
+        goto valid_choice;
+    }
+    return 0;
+}
