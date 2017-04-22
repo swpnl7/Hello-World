@@ -379,13 +379,14 @@ void User(int usroomno, string userna, string passpass){
 
 int main() {
     // LOGIN PAGE
+    //comment out follwing block of code first time when you run this code on your machine
     /*ofstream ffout;
     ffout.open("admin_details.txt");
     ffout<<"admin "<<"123456789"<<endl;
     ffout.close();
     ofstream fout;
     fout.open("user_details.txt");
-    fout<<"nitish "<<"123"<<" 123"<<endl;
+    fout<<"123"<<" swapnil "<<" 123"<<endl;
     fout.close();*/
 
 
