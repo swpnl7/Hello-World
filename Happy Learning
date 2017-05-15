@@ -1,0 +1,317 @@
+Problem Statement
+Happy Learning Project
+IT-258 Software
+Engineering
+2 nd year 2017
+GGSIP University- USICT
+Dwarka-16 C, New DelhiThis document gives a detailed requirement specification for a
+University academic portal. The document follows the IEEE 830
+format.
+Table of Contents
+Table of Figure(s)........................................................4
+1. Introduction............................................................5
+1.1 Purpose................................................................5
+1.2 Scope...................................................................5
+1.3 Definitions
+1.5 Overview
+5
+6
+2. Overall Description................................................6
+2.1 Product Perspective..............................................6
+2.1.1 System Interface...............................................6
+2.1.2 User interface....................................................6
+2.1.3 Hardware Interface
+6
+2.1.4 Software Interface 7
+2.1.5 Communication Interfaces 7
+2.1.6 Memory Constraints 7
+2.1.7 Operations 72.2 User Characteristics 16
+2.2.1 Students 16
+2.2.2 Professors 16
+2.2.3 System Administrators 16
+2.3 Constraints 16
+2.3.1 User Interface Constraints 16
+2.3.2 Hardware Constraints 17
+2.3.3 Software Constraints 17
+2.3.4 Data Management Constraints 17
+2.3.5 Operational Constraints 17
+2.3.6 Site Adaptation Constraints 17
+2.3.7 Design Standards Compliance 17
+2.4 Assumptions and dependencies 17
+2.5 Apportioning of Requirements 17
+Integration of LDAP login might be apportioned to
+future versions.
+17
+3. Specific Requirements
+183.1 External interface 18
+3.1.1 Web Server 18
+3.1.2 PHP Application 18
+3.1.3 MySQL Database 18
+3.2 Functional Requirements 18
+3.3 Performance Requirements 25
+3.4 Logical database requirements 25
+3.5 Design Constraints 25
+3.6 Software System Attributes 25
+3.6.1 Reliability 25
+3.6.2 Availability 25
+3.6.3 Security 26
+3.6.4 Maintainability 26
+3.6.5 Portability 26
+1. Introduction
+1.1 Purpose
+The purpose of this document is to capture, in
+natural language and at a functional level, thedescription and requirements of an “Student
+Teacher management” for our University. The
+focus here is the “GGSIPU” educational needs.
+This is a functional description of those features
+required to address current educational
+requirements. A short discussion accompanies
+each requirement, to add the background and
+framework necessary to explain the
+functionality. It also describes nonfunctional
+requirements and other factors necessary to
+provide a complete and comprehensive
+description of the requirements for the software.
+1.2 Scope
+This software system will be an online teacher
+student management system for any university
+wishing to manage their academic needs online.
+More specifically to design and develop a simple
+and intuitive system which shall cater the
+academic needs of our institute. The system
+shall provide features to the user of an
+educational institute to be part of different
+types of groups, share data and documents
+amongst different users, have instant
+notifications via email/message, assignment
+submissions, share old papers etc.
+1.3 Definitions1.3.1 Academic Portal
+Academic Portal is software meant to help
+facilitate electronic classroom management
+and provide for electronic grading, assignment
+submission and other learning tools.
+1.3.2 Course Administrator
+Course administrator is a user who can be a
+professor or system administrator and who
+has the ability to manage courses and course
+pages.
+1.3.3 Academic Groups
+An academic group is a set of users which can
+belong to the same course, same department
+from the very same year.
+1.3.4 System
+System refers to the existing Teacher
+management system.
+1.4 Overview
+This is a working document and, as such, is
+subject to change. In its initial form, it is
+incomplete by definition, and will require
+continuing refinement. Requirements may bemodified and additional requirements may be
+added as development progresses and the
+system description becomes more refined. This
+information will serve as a framework for the
+current definition and future evolution of the
+Happy learning Portal.
+2. Overall Description
+2.1 Product Perspective
+(STUB) is meant to serve as a common platform
+where management of everyday academic
+tasks can be carried out conveniently. Our goal
+is to develop a replacement to the academic
+portal used at GGSIPU making it more users
+friendly and to promote academic networking
+among the users.
+2.1.1 System Interface
+XAMPP will be used as web server.
+The user inputs data via the web server using
+HTML forms.
+The actual program that will perform the opera-
+tions is written in PHP.
+2.1.2 User interface
+The new system shall provide a very intuitive
+and simple interface to the user and the
+administrator, so that the user can easily
+navigate through pages, assignments, groupsand sub-groups, upload assignments, share
+data , old papers sharing and the administrator
+can easily manage groups and revoke user
+permissions.
+2.1.3 Hardware Interface
+Server Side
+The web application will be hosted on a web
+server which is listening on the web standard
+port, port 80.
+a)
+b)Client side
+Monitor screen
+- the software shall display
+information to the user via the monitor screen
+Mouse - the software shall interact with the
+movement of the mouse and the mouse
+buttons. The mouse shall activate areas for data
+input, command buttons and select
+options from menus.
+Keyboard - the software shall interact with the
+keystrokes of the keyboard.The keyboard will
+input data into the active area of the database.
+2.1.4 Software Interface
+a)Server side
+An XAMPP web server will accept all requests
+from the client and forward it accordingly. A
+database will be hosted centrally using MySQL.b)Client side
+An OS which is capable of running a modern
+web browser which supports JavaScript and
+HTML5.
+2.1.5 Communication Interfaces
+The HTPP or HTTPS protocol(s) will be used to
+facilitate communication between the client and
+server.
+2.1.6 Memory Constraints
+Memory constraints will come into play when
+the size of MySQL grows to a considerable size.
+2.1.7 Operations
+The product shall have operations to protect the
+database from being corrupted or accidentally
+altered during a system failure.2.2 User Characteristics
+Use Case Diagram:-
+• Use case Diagram Link:-
+Use Case Diagram2.2.1 Students
+Students are the primary consumers of an
+academic portal. They are accessing
+information posted by professors, uploading
+assignments and project files, and
+discussing concepts.
+2.2.2 Professors
+Professors are the primary content
+administrators of an academic portal. They are
+uploading files, links, and multimedia, and
+grading assignments in addition to creating
+new places for students to discuss and
+collaborate.
+2.2.3 System Administrators
+System administrators are primarily responsible
+for maintaining the academic portal.
+They contribute minimally to the courses
+themselves, but spend more time modifying
+the system’s configuration and making
+appropriate updates.• Data flow diagram:-
+Data Flow Diagram link given below:-
+Data flow diagram• ER-Diagram:-2.3 Constraints
+2.3.1 User Interface Constraints
+Using this system is fairly simple and intuitive. A
+user familiar with basic browser navigation skills
+should be able to understand all functionality
+provided by the system.
+2.3.2 Hardware Constraints
+The system should work on most home desktop
+and laptop computers which support
+JavaScript and HTML5.
+2.3.3 Software Constraints
+The system will be intended to run on Firefox 4
+and above, Google Chrome 10 and above and
+Internet Explorer 8 and above.
+2.3.4 Data Management Constraints
+System shall be able to interface with other
+components according to their specifications.
+2.3.5 Operational Constraints
+The system is limited by its operating server in
+terms of the maximum number of users
+it can support at a given time.
+2.3.6 Design Standards Compliance
+The system shall be implemented in PHP.2.4 Assumptions and dependencies
+Most of the academic portals have a lot of
+redundant features which are rarely used in
+an academic sessions. Our new system focuses
+on the features which are most important to the
+users of an academic institute along with
+introduction of some new features which other
+portals lacks.
+3. Specific Requirements
+3.1 External interface
+3.1.1 Web Server
+XAMPP will be used as web server:
+The user inputs data via the web server using
+HTML forms
+The web server executes the PHP as a module
+and PHP script retrieves the post data if
+available.
+The web server receives information back from
+the PHP script.
+The web server displays a HTML page as result
+to the end user.
+3.1.2 PHP Application
+The actual program that will perform the
+operations is written in PHP. All data will be
+stored in a database.3.1.3 MySQL Database
+It’s an open source SQL database to store all
+data which communicates with the application
+on the server.
+3.2 Performance Requirements
+The system should support at least 200
+concurrent users. This statement provides a
+general sense of reliability when the system is
+under load. It is important that a substantial
+number of users be able to access the system
+at the same time, since an academic portal is
+important to the courses that employ it. The
+times when the system will be under the most
+stress are likely during assignment submissions.
+Therefore, it must be able to handle at least 200
+concurrent users.
+3.3 Logical database requirements
+All data will be saved in the database: user
+accounts and profiles, discussion data,
+messages etc. (except files which are stored on
+the disk.) The database allows concurrent
+access and will be kept consistent at all times,
+requiring a good database design.
+3.4 Design Constraints
+1. The communication between the portal
+software and the database will be in SQL.2. The portal layout will be produced with
+HTML/CSS.
+3. The product will be written in PHP.
+4. The output must be compatible with W3C
+XHTML 1.0 .
+5. The source code must follow the coding
+conventions of PHP.
+6. System administrators must have access to
+comprehensive documentation.
+3.5 Software System Attributes
+The software consists of the following elements:
+1. The XAMPP web server
+2. The PHP application
+3. The MySQL database
+4. The database should remain consistent at all
+times in case of an error.
+3.5.1 Reliability
+The reliability of the overall program depends
+on the reliability of the separate
+components.
+3.6.2 AvailabilityThe system should be available at all times,
+meaning the user can access it using a web
+browser, only restricted by the down time of the
+server on which the system runs. In case of a of
+a hardware failure or database corruption, a
+replacement page will be shown. Also in case of
+a hardware failure or database corruption,
+backups of the database should be retrieved
+with the MySQL server and saved by the
+administrator.
+3.6.3 Security
+1. Passwords will be saved encrypted in the
+database in order to ensure the user's privacy.
+2. The user's IP will be logged.
+3. The system will be protected against
+vulnerabilities such as SQL injection attacks.
+3.6.4 Maintainability
+MySQL is used for maintaining the database and
+the Apache server takes care of the site. In case
+of a failure, a re-initialization of the program is
+recommended.
+3.6.5 Portability
+The application is Linux-based and should be
+compatible with other systems. Apache, PHP
+and MySQL programs are practically
+independent of the OS-system which theycommunicate with. The end-user part is fully
+portable and any system using any web browser
+should be able to use the features of the
+application.
